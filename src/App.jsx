@@ -1,36 +1,27 @@
-import Content from "./components/Content";
-import Header from "./components/Header";
-import Total from "./components/Total";
+import { useState } from "react";
 
 
-function App() {
-  const course = "Half full stack application development";
-  const parts = [
-{
-    name: "Fundamentals of React",
-    exercises:10
-    },
-    {
-    name: "Using props to pass data",
-    exercises: 7,
-    },
-    {
-      name: "State of a component",
-      exercises: 14
-    }
-  ]
 
- 
+const App = () => {
+  const [clicks, setClicks] = useState({ left: 0, right: 0 })
+  
+  const handleLeftClicks = () => {
+   setClicks({...clicks,left:clicks.left+1})
+  }
+  
+  const handleRightClicks = () => {
+   
+    setClicks({...clicks,right:clicks.right+1})
+  }
+  
   return (
     <div>
-    
-      <Header course={course} />
-      <Content parts={parts} />
-     
-      <Total parts={parts} />
+      {clicks.left}
+      <button onClick={handleLeftClicks}>left</button>
+      <button onClick={handleRightClicks}>right</button>
+      {clicks.right}
     </div>
-  );
-  
+  )
 }
-
+  
 export default App;
